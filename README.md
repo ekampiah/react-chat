@@ -42,6 +42,34 @@ Given the comprehensive set of features, development will be broken down into th
 - Chat list screen
 - Chat screen (1-1)
 
+### Milestone 5 (enhancements)
+- Allow user avatars (blob storage)
+- Edit messages
+
+
+## Data structure
+For the Firestore database, I'll briefly discuss the data model to be used with the motiviations behind each decision.
+
+### Collections
+- conversations
+    - messages (subcollection)
+        - messageId
+        - senderId
+        - createdAt
+    - participants (IDs of chat participants)
+- users
+    - userId
+    - username
+    - avatar (url)
+
+### Scenarios
+1. Get user
+    - Simply query users collection and find user based on ID or username
+2. Update users
+    - Similar to getting a user, requiring one call to find user and one call to update
+    - Single source of truth and only one point to update reduces data duplication/redundancy
+3. Get conversations for user
+    - Query conversations collection which have userId in participants list
 
 # Sources
 - [Data modeling](https://medium.com/@henryifebunandu/cloud-firestore-db-structure-for-your-chat-application-64ec77a9f9c0)
