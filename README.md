@@ -41,3 +41,7 @@ Given the comprehensive set of features, development will be broken down into th
 ### Milestone 4
 - Chat list screen
 - Chat screen (1-1)
+
+
+# Sources
+- [Data modeling](https://medium.com/@henryifebunandu/cloud-firestore-db-structure-for-your-chat-application-64ec77a9f9c0)
