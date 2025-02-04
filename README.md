@@ -51,16 +51,28 @@ Given the comprehensive set of features, development will be broken down into th
 For the Firestore database, I'll briefly discuss the data model to be used with the motiviations behind each decision.
 
 ### Collections
-- conversations
-    - messages (subcollection)
-        - messageId
-        - senderId
-        - createdAt
-    - participants (IDs of chat participants)
-- users
-    - userId
-    - username
-    - avatar (url)
+├── users (collection)
+|   ├── uniqueUserId (document)
+|   |   ├── userId: "uniqueUserId"
+|   |   ├── username: "user123"
+|   |   ├── email: "user@example.com"
+|   |   ├── profilePictureUrl: "url_to_profile_picture"
+|   |   ├── createdAt: "timestamp"
+|   |   └── lastActive: "timestamp"
+|
+├── chats (collection)
+|   ├── uniqueChatId (document)
+|   |   ├── chatId: "uniqueChatId"
+|   |   ├── participants: ["userId1", "userId2"]
+|   |   └── createdAt: "timestamp"
+|   |
+|   └── messages (subcollection)
+|       ├── uniqueMessageId (document)
+|       |   ├── messageId: "uniqueMessageId"
+|       |   ├── senderId: "userId"
+|       |   ├── text: "Hello, world!"
+|       |   ├── createdAt: "timestamp"
+|       |   └── chatId: "uniqueChatId"
 
 ### Scenarios
 1. Get user
