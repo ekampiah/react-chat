@@ -4,36 +4,24 @@ import { FirebaseProvider, useFirebase } from "@/util/firebaseContext";
 import bg from "../../public/chateka_background1.png";
 import continueWithGoogle from "../../public/continue_with_google.svg";
 import React from "react";
-import { GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Home() {
-  const { auth, signIn } = useFirebase();
+  const { signIn } = useFirebase();
   const router = useRouter();
 
   const signInAction = () => {
     signIn()
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential!.accessToken;
-        // The signed-in user info.
         const user = result.user;
-
         if (user) {
           router.push("/dashboard");
+        } else {
+          alert("Sign in failed");
         }
       })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-      });
+      .catch(console.log);
   };
 
   return (

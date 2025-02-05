@@ -3,9 +3,6 @@ import React, { createContext, useContext } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { redirect, useRouter } from "next/navigation";
-
-// const router = useRouter();
 
 // Your Firebase configuration
 const firebaseConfig = {
