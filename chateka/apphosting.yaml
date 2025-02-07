@@ -13,6 +13,8 @@ env_variables:
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
     value: mybucket.firebasestorage.app
     # secret: NEXT_PUBLIC_FIREBASE_API_KEY
+  - variable: FIREBASE_API_KEY
+    value: mybucket.firebasestorage.app
     
   - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
     secret: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
