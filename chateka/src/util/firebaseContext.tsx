@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-console.log(process.env.NEXT_PUBLIC_MESSAGE);
+console.log('message ' + process.env.NEXT_PUBLIC_MESSAGE);
 
 // Your Firebase configuration
 const firebaseConfig = {
