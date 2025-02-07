@@ -24,6 +24,7 @@ export default function Home() {
       .catch(console.log);
   };
 
+  console.log('message ' + process.env.NEXT_PUBLIC_MESSAGE);
   return (
     <FirebaseProvider>
       <div
