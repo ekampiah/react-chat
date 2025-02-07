@@ -8,11 +8,11 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Home() {
-  const { signIn } = useFirebase();
+  const { auth, provider, signInWithPopup } = useFirebase();
   const router = useRouter();
 
-  const signInAction = () => {
-    signIn()
+  const handleLogin = () => {
+    signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
         if (user) {
@@ -42,7 +42,7 @@ export default function Home() {
           <Image
             src={continueWithGoogle}
             className="cursor-pointer hover:opacity-80"
-            onClick={signInAction}
+            onClick={handleLogin}
             alt="Continue with Google"
           />
         </div>

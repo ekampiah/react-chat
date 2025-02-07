@@ -14,7 +14,6 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-console.log(firebaseConfig);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -26,13 +25,12 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
 
-const signIn = () => signInWithPopup(auth, provider);
-
 const FirebaseContext = createContext({
   app,
   auth,
   db,
-  signIn,
+  provider,
+  signInWithPopup,
 });
 
 export const useFirebase = () => useContext(FirebaseContext);
@@ -43,7 +41,9 @@ export const FirebaseProvider = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <FirebaseContext.Provider value={{ app, auth, db, signIn }}>
+    <FirebaseContext.Provider
+      value={{ app, auth, db, provider, signInWithPopup }}
+    >
       {children}
     </FirebaseContext.Provider>
   );
